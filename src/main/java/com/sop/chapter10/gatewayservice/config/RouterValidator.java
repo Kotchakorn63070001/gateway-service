@@ -1,6 +1,6 @@
 package com.sop.chapter10.gatewayservice.config;
 
-import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

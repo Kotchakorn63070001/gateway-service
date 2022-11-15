@@ -1,6 +1,7 @@
 package com.sop.chapter10.gatewayservice.config;
 
 
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -22,6 +23,7 @@ public class AuthenticationFilter implements GatewayFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain){
+//        ServerHttpRequest request = exchange.getRequest();
         ServerHttpRequest request = exchange.getRequest();
         if (routerValidator.isSecured.test(request)){
             if (this.isAuthMissing(request))
@@ -44,5 +46,19 @@ public class AuthenticationFilter implements GatewayFilter {
         return response.setComplete();
     }
 
-    private String getAuthHeader(Server)
+    private String getAuthHeader(ServerHttpRequest request){
+        return  request.getHeaders().getOrEmpty("Authorization").get(0);
+    }
+
+    private boolean isAuthMissing(ServerHttpRequest request){
+        return  !request.getHeaders().containsKey("Authorization");
+    }
+
+    private void populateRequestWithHeaders(ServerWebExchange exchange, String token){
+        Claims claims = jwtUtil.getAllChaimsFromToken(token);
+        exchange.getRequest().mutate()
+                .header("id", String.valueOf(claims.get("id")))
+                .header("role", String.valueOf(claims.get("role")))
+                .build();
+    }
 }
