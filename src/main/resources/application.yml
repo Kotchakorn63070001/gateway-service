@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 3001
 
 spring:
   application:
@@ -9,6 +9,14 @@ spring:
       discovery:
         locator:
           enabled: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:8080"
+            allowed-methods: "*"
+            allowed-headers: "*"
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
 
 jwt:
   secret: DAKjfg1ndlmkngl6jeEOlgkdslmsd;gl78LGlcdkni27NKmksdhfPcdlgfr7vdkhgrpOgmflbfY
