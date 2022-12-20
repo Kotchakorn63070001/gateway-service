@@ -23,6 +23,12 @@ public class GatewayConfig {
                 .route("car-service", r -> r.path("/cars/**")
                         .filters(f -> f.filter(filter))
                         .uri("lb://car-service"))
+                .route("order-service", r -> r.path("/order/**")
+                        .filters(f -> f.filter(filter))
+                        .uri("lb://order-service"))
+                .route("payment-service", r -> r.path("/payments/**")
+                        .filters(f -> f.filter(filter))
+                        .uri("lb://payment-service"))
                 .build();
     }
 }

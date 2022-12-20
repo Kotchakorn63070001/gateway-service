@@ -17,7 +17,15 @@ public class RouterValidator {
             "/cars/getCarByType",
             "/cars/getCarByBrand",
             "/cars/delCar",
-            "/cars/updateCar"
+            "/cars/updateCar",
+            "/order/getAllOrder",
+            "/order/addOrder",
+            "/order/getAllLocations",
+            "/order/getAllCars",
+            "/order/updateQuantity",
+            "/payments/getAllPayments",
+            "/payments/addPayment",
+            "/payments/delPayment/"
     );
 
     public Predicate<ServerHttpRequest> isSecured =
