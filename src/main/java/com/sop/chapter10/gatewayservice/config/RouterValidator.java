@@ -23,6 +23,7 @@ public class RouterValidator {
             "/order/getAllLocations",
             "/order/getAllCars",
             "/order/updateQuantity",
+            "/order/updateStatus",
             "/payments/getAllPayments",
             "/payments/addPayment",
             "/payments/delPayment/"
